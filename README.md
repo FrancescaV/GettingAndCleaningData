@@ -100,7 +100,7 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
 *colnames(dat_meadStd) <- c(feat_meanStd$V2, "activity", "subject", "type")*
 
-- Get rid of "-" and "()". For this I use grep to substitute characters
+- Get rid of "-" and "()". For this I use gsub() to substitute characters
 
 *names(dat_meadStd) <- gsub("-m", "M", names(dat_meadStd))*
 
