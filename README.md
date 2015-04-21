@@ -9,7 +9,7 @@ The R commands used in the script are in italic.
 
 I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial Signals/)
 
-- loading the data into table frames.
+- loading the data into table frames:
 
   *test_sub <-read.table("test/subject_test.txt", header = FALSE)*
 
@@ -23,7 +23,7 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
   *train_Y <- read.table("train/Y_train.txt", header = FALSE)*
 
-- Changing the name of the columns to subject_\*.txt and Y_\*.txt.
+- Changing the name of the columns to subject_\*.txt and Y_\*.txt:
 
   *colnames(test_sub) <- c("subject")*
 
@@ -34,7 +34,7 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
   *colnames(train_Y) <- c("activity")*
 
 
-- Binding the test/ and train/ data by columns separately
+- Binding the test/ and train/ data by columns separately:
 
   *dat_test <- cbind(test_X,test_Y)*
 
@@ -45,7 +45,7 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
   *dat_train <- cbind(dat_train,train_sub)*
  
 
-- Adding a "type" column to denote test and train data (not required in Homework), but still good practice.
+- Adding a "type" column to denote test and train data (not required in Homework), but still good practice:
 
   *library(dplyr)*
 
@@ -53,35 +53,35 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
   *dat_train <- mutate(dat_train, type = "train")*
 
-- Binding the train/ and test/ datasets by row
+- Binding the train/ and test/ datasets by row:
 
   *dat <- rbind(dat_test, dat_train)*
 
 ###    2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
-- Loading the "features.txt" file into a data frame.
+- Loading the "features.txt" file into a data frame:
 
   *features <- read.table("features.txt", header = FALSE,stringsAsFactors=FALSE)*
 
-- Looking for the features containing mean() and std() in the second column. The escape "\\" is needed for the parenthesis "()"
+- Looking for the features containing mean() and std() in the second column. The escape "\\" is needed for the parenthesis "()":
 
   *feat_mean <- features[grep("mean\\(", features$V2),]*
 
   *feat_std <- features[grep("std\\(", features$V2),]*
 
-- binding them together by row and arranging them in increasing V1
+- binding them together by row and arranging them in increasing V1:
 
   *feat_meanStd <- rbind(feat_mean, feat_std)*
 
   *feat_meanStd <- arrange(feat_meanStd,V1)*
 
-- sub-setting the data containing columns with mean and std PLUS also the columns with "activity", "subject", and "type" (columns 562,563,564).
+- sub-setting the data containing columns with mean and std PLUS also the columns with "activity", "subject", and "type" (columns 562,563,564):
 
   *dat_meadStd <- dat[, c(feat_meanStd$V1,562,563,564)]*
 
 ###    3. Uses descriptive activity names to name the activities in the data set
 
-- storing "activity_labels.txt" into a data.frame
+- storing "activity_labels.txt" into a data.frame:
 
   *act_labels <- read.table("activity_labels.txt", header = FALSE,stringsAsFactors=FALSE)*
 
@@ -96,11 +96,11 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
 ###    4. Appropriately labels the data set with descriptive variable names.
 
-- Here I use the data frame "feat_meanStd" created above plut the last 3 columns which I add by hand
+- Here I use the data frame "feat_meanStd" created above plut the last 3 columns which I add by hand:
 
   *colnames(dat_meadStd) <- c(feat_meanStd$V2, "activity", "subject", "type")*
 
-- Get rid of "-" and "()". For this I use gsub() to substitute characters
+- Get rid of "-" and "()". For this I use gsub() to substitute characters:
 
   *names(dat_meadStd) <- gsub("-m", "M", names(dat_meadStd))*
 
@@ -113,9 +113,9 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
 ###    5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-- Use aggregate() to aggregate the data by "subject", "activity", and "type" (test or train).
+- Use aggregate() to aggregate the data by "subject", "activity", and "type" (test or train):
 
-- I then compute the mean for each column in the data set, but the last 3 which contain "subject", "activity", and "type".
+- I then compute the mean for each column in the data set, but the last 3 which contain "subject", "activity", and "type":
 
   *new_dataSet <- aggregate(dat_meadStd[,1:(ncol(dat_meadStd)-3)], by=list(subject = dat_meadStd$subject, activity = dat_meadStd$activity, type = dat_meadStd$type), mean)*
 
@@ -125,6 +125,6 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
   *write.table(new_dataSet, "myTidyDataSet_progAssignment.txt", sep=",", row.name=FALSE )*
 
-- spring cleaning
+- spring cleaning:
 
   *rm(list=ls())*
