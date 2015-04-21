@@ -2,6 +2,8 @@
 
 Note, Rmarkdown would have been much better for this.....
 
+The R commands used in the script are in italic.
+
 
 ### 1. Merge the training and the test sets to create one data set.
 
