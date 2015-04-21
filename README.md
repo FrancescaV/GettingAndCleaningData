@@ -59,11 +59,11 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
 ###    2. Extracts only the measurements on the mean and standard deviation for each measurement.
 
--Loading the "features.txt" file into a data frame.
+- Loading the "features.txt" file into a data frame.
 
 *features <- read.table("features.txt", header = FALSE,stringsAsFactors=FALSE)*
 
--Looking for the features containing mean() and std() in the second column. The escape "\\" is needed for the parenthesis "()"
+- Looking for the features containing mean() and std() in the second column. The escape "\\" is needed for the parenthesis "()"
 
 *feat_mean <- features[grep("mean\\(", features$V2),]*
 
