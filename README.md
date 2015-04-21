@@ -46,7 +46,8 @@ I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial 
 
 
 - Adding a "type" column to denote test and train data (not required in Homework), but still good practice.
-library(dplyr)
+
+*library(dplyr)*
 
 *dat_test <- mutate(dat_test, type = "test")*
 
