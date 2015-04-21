@@ -7,7 +7,7 @@ The R commands used in the script are in italic.
 
 ### 1. Merge the training and the test sets to create one data set.
 
-I want to Combine the \\*.txt files in test/ and train/ folders (not in Inertial Signals/)
+I want to Combine the \*.txt files in test/ and train/ folders (not in Inertial Signals/)
 
 - loading the data into table frames.
 
@@ -23,7 +23,7 @@ I want to Combine the \\*.txt files in test/ and train/ folders (not in Inertial
 
 *train_Y <- read.table("train/Y_train.txt", header = FALSE)*
 
-- Changing the name of the columns to subject_\\*.txt and Y_\\*.txt.
+- Changing the name of the columns to subject_\*.txt and Y_\*.txt.
 
 *colnames(test_sub) <- c("subject")*
 
